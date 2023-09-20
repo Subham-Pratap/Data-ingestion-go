@@ -7,6 +7,7 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"os"
 	"strconv"
 
 	"github.com/aws/aws-sdk-go-v2/aws"
@@ -33,9 +34,9 @@ var s3Client *s3.Client
 func init() {
 
 	// Hardcoded the credentials for simplicity purposes
-	awsAccessKeyID := "AKIAVQHKED5NNUZKEKKQ"
-	awsSecretAccessKey := "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"
-	awsRegion := "ap-south-1"
+	awsAccessKeyID := os.Getenv("AWS_ACCESS_KEY_ID")
+	awsSecretAccessKey := os.Getenv("AWS_SECRET_ACCESS_KEY")
+	awsRegion := os.Getenv("AWS_REGION")
 
 	//creating a connection config
 	cfg, err := config.LoadDefaultConfig(context.TODO(),
